@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TezMechanicX - Automotive Parts Marketplace</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    .header {
+      background-color: #000000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: #ffffff;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .nav-search-container {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      flex: 1;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav a {
+      color: #ffffff;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      position: relative;
+    }
+
+    .nav a::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #ffffff;
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .search-bar {
+      position: relative;
+    }
+
+    .search-bar input {
+      padding: 0.5rem 2.5rem 0.5rem 1rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      outline: none;
+      width: 200px;
+      transition: width 0.4s ease;
+    }
+
+    .search-bar input:focus {
+      width: 250px;
+    }
+
+    .search-bar::after {
+      content: "🔍";
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      font-size: 1rem;
+    }
+
+    .filters {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #000000;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-option {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid #000000;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .filter-option:hover {
+      background-color: #000000;
+      color: #ffffff;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .product-card {
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: #fafafa;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      background-color: #f5f5f5;
+      border-radius: 10px;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 1rem 0;
+    }
+
+    .btn {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-transform: uppercase;
+      border-radius: 25px;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #222222;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">TezMechanicX</div>
+    <div class="nav-search-container">
+      <nav class="nav">
+        <a href="#">Shop</a>
+        <a href="#">Categories</a>
+        <a href="#">Cart (0)</a>
+        <a href="#">Account</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" placeholder="Search parts..." />
+      </div>
+    </div>
+  </header>
+
+  <div class="filters">
+    <div class="filter-option">Engine Parts</div>
+    <div class="filter-option">Suspension</div>
+    <div class="filter-option">Electronics</div>
+    <div class="filter-option">Accessories</div>
+    <div class="filter-option">Tools</div>
+  </div>
+
+  <main class="product-grid">
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/51sZ++6mj3L._AC_UF1000,1000_QL80_.jpg" alt="Turbo Charger" class="product-image">
+      <h3>Performance Turbo Charger</h3>
+      <p class="product-price">Rs 41,000</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSui_DzJxgfpS6rmwKhwOXOSKkFx6KU0BSJeQ&s" alt="Coilovers" class="product-image">
+      <h3>Adjustable Coilover Kit</h3>
+      <p class="product-price">Rs 73,718</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://auxbeam.in/cdn/shop/products/1_46d1e375-2f80-4e8b-8c0b-e7f4f23a0cab_500x500_crop_center.jpg?v=1695718553" alt="LED Lights" class="product-image">
+      <h3>LED Headlight Assembly</h3>
+      <p class="product-price">Rs 20,499.18</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://m.media-amazon.com/images/I/7175BpJ3tNL.jpg" alt="Brake Kit" class="product-image">
+      <h3>High Performance Brake Kit</h3>
+      <p class="product-price">Rs 57,318</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1cfVxzpuCNpB9bBQQSaGD_8zSKgZ059qBQA&s" alt="Exhaust" class="product-image">
+      <h3>Stainless Steel Exhaust System</h3>
+      <p class="product-price">Rs 63,120</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+      <img src="https://images-cdn.ubuy.co.in/665d632ec4f1b1118b5746d2-thinkcar-platinum-s8-pro-8-inch.jpg" alt="Diagnostic Tool" class="product-image">
+      <h3>Professional Diagnostic Tool</h3>
+      <p class="product-price">Rs 1,31,118</p>
+      <button class="btn">Add to Cart</button>
+    </div>
+  </main>
+
+  <script>
+    // Cart functionality
+    let cartCount = 0;
+    const cartLink = document.querySelector('.nav a:nth-child(3)'); // More reliable selector
+    const addToCartButtons = document.querySelectorAll('.btn');
+
+    // Add to cart functionality
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        cartCount++;
+        cartLink.textContent = `Cart (${cartCount})`;
+        button.textContent = 'Added!';
+        button.style.backgroundColor = '#4CAF50';
+        
+        // Reset button after 1 second
+        setTimeout(() => {
+          button.textContent = 'Add to Cart';
+          button.style.backgroundColor = '#000000';
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>
