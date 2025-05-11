@@ -1,142 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Request</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TezMechanixs Quick Assistant</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f7fc;
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+
+      --light-background: #f8fafc;
+      --light-text: #1e293b;
+      --light-card: #ffffff;
+      --light-border: #e2e8f0;
+
+      --dark-background: #0f172a;
+      --dark-text: #f1f5f9;
+      --dark-card: #1e293b;
+      --dark-border: #334155;
+    }
+
+    [data-theme='light'] {
+      --background: var(--light-background);
+      --text: var(--light-text);
+      --card: var(--light-card);
+      --border: var(--light-border);
+    }
+
+    [data-theme='dark'] {
+      --background: var(--dark-background);
+      --text: var(--dark-text);
+      --card: var(--dark-card);
+      --border: var(--dark-border);
+    }
+
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, sans-serif;
     }
+
+    body {
+      background-color: var(--background);
+      color: var(--text);
+      padding: 2rem 1rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
     .container {
-      width: 100%;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      transition: background 0.3s, color 0.3s;
     }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      font-size: 2rem;
+      text-align: center;
     }
-    form {
+
+    .chat-container {
       display: flex;
       flex-direction: column;
+      gap: 1.5rem;
     }
-    label {
-      font-size: 16px;
-      margin: 10px 0 5px;
+
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--text);
+      resize: vertical;
+      min-height: 120px;
+      font-size: 1rem;
     }
-    textarea, input[type="text"], input[type="number"] {
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
     }
+
     button {
-      padding: 12px 20px;
-      font-size: 16px;
-      background-color: #007bff;
+      align-self: flex-end;
+      background: var(--primary);
       color: white;
       border: none;
-      border-radius: 4px;
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
     }
+
     button:hover {
-      background-color: #0056b3;
+      background: var(--primary-hover);
     }
-    #statusMessage {
-      font-size: 16px;
-      margin-top: 20px;
-      min-height: 20px;
+
+    button:active {
+      transform: scale(0.98);
     }
-    .success {
-      color: green;
+
+    pre#response {
+      background: var(--background);
+      border: 1px dashed var(--border);
+      padding: 1.5rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      min-height: 150px;
+      font-family: 'Courier New', monospace;
+      position: relative;
     }
-    .error {
-      color: red;}/* your CSS styles (unchanged) */
+
+    .loading::after {
+      content: "Thinking...";
+      font-style: italic;
+      animation: dots 1.5s steps(5, end) infinite;
+      color: var(--primary);
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+    }
+
+    @keyframes dots {
+      0% { content: "Thinking" }
+      33% { content: "Thinking." }
+      66% { content: "Thinking.." }
+      100% { content: "Thinking..." }
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
   <div class="container">
-    <h1>Job Request</h1>
-    <form id="jobRequestForm">
-      <label for="name">Your Name:</label>
-      <input type="text" id="name" name="name" required>
-      
-      <label for="phone">Phone Number:</label>
-      <input type="text" id="phone" name="phone" required>
-      
-      <label for="description">Job Description:</label>
-      <textarea id="description" name="description" required></textarea>
-      
-      <label for="vehicleType">Vehicle Type:</label>
-      <input type="text" id="vehicleType" name="vehicleType" placeholder="e.g., Car, Bike, Truck">
-      
-      <label for="vehicleModel">Vehicle Model:</label>
-      <input type="text" id="vehicleModel" name="vehicleModel">
-      
-      <label for="urgent">Urgent:</label>
-      <input type="checkbox" id="urgent" name="urgent">
-      
-      <button type="submit">Submit Job Request</button>
-    </form>
-    <div id="statusMessage"></div>
+    <h2>⚡ TezMechanixs Quick Assistant</h2>
+
+    <div class="chat-container">
+      <textarea 
+        id="prompt" 
+        placeholder="Ask your service assistant anything..."
+      ></textarea>
+
+      <button onclick="sendPrompt()">Ask →</button>
+
+      <h3>Response:</h3>
+      <pre id="response"></pre>
+    </div>
   </div>
 
   <script>
-    document.getElementById('jobRequestForm').addEventListener('submit', async function(event) {
-      event.preventDefault();
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+    }
 
-      const statusElement = document.getElementById('statusMessage');
-      statusElement.textContent = "Processing your request...";
-      statusElement.className = "";
+    async function sendPrompt() {
+      const prompt = document.getElementById('prompt').value.trim();
+      const responseEl = document.getElementById('response');
+
+      if (!prompt) {
+        alert('Please enter a message.');
+        return;
+      }
+
+      responseEl.textContent = '';
+      responseEl.classList.add('loading');
 
       try {
-        // Collect form data
-        const name = document.getElementById('name').value;
-        const phone = document.getElementById('phone').value;
-        const description = document.getElementById('description').value;
-        const vehicleType = document.getElementById('vehicleType').value;
-        const vehicleModel = document.getElementById('vehicleModel').value;
-        const urgent = document.getElementById('urgent').checked;
-
-        // Send data to your backend
-        const response = await fetch('http://localhost:5500/api/submit-problem', {
+        const res = await fetch('/ask', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
           },
-          body: JSON.stringify({
-            userId: phone, // use phone as userId
-            description: `${description}\nVehicle: ${vehicleType} - ${vehicleModel}\nUrgent: ${urgent ? "Yes" : "No"}`
-          })
+          body: JSON.stringify({ prompt })
         });
 
-        const data = await response.json();
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
 
-        if (response.ok) {
-          statusElement.textContent = "Job request submitted successfully!";
-          statusElement.className = "success";
-          document.getElementById('jobRequestForm').reset();
-        } else {
-          statusElement.textContent = data.error || "Something went wrong.";
-          statusElement.className = "error";
-        }
-      } catch (error) {
-        statusElement.textContent = "Network error. Please try again.";
-        statusElement.className = "error";
-        console.error(error);
+        const data = await res.json();
+        responseEl.textContent = data.reply || 'No reply received.';
+      } catch (err) {
+        responseEl.textContent = `❌ Error: ${err.message}`;
+      } finally {
+        responseEl.classList.remove('loading');
       }
-    });
+    }
   </script>
 </body>
 </html>
-
-       
