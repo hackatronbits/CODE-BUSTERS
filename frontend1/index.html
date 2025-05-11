@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tezMechanicX-</title>
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        color: #fff;
+        background-color: #000;
+      }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #1d1d1d;
+      }
+
+      header .logo img {
+        width: 100px;
+      }
+
+      header nav ul {
+        display: flex;
+        list-style-type: none;
+      }
+
+      header nav ul li {
+        margin: 0 15px;
+      }
+
+      header nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background-image: url("ktm-hero.jpg");
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        flex-direction: column;
+        background-image: url('https://s7g10.scene7.com/is/image/ktm/KTM-6days-isde-rental-homepage-header-3:XLarge?wid=1890&hei=1080&dpr=off');
+
+      }
+  
+
+
+      .hero .hero-content h1 {
+        font-size: 60px;
+        margin-bottom: 50px;
+      }
+      .hero-content #hero2 {
+    font-size: 80px;
+    margin-bottom: 40px; /* <-- Adds space before the button */
+}
+
+      .hero .cta-btn {
+        background-color: #ff8c00;
+        color: #fff;
+        padding: 15px 0px;
+        text-decoration: none;
+        font-size: 20px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        
+      }
+      .hero-content #hero2 {
+    font-size: 20px;
+    margin-bottom: 40px; /* <-- Adds space before the button */
+}
+
+      .hero .cta-btn:hover {
+        background-color: #e77e00;
+      }
+
+      /* Featured Bikes */
+      .featured-bikes {
+        display: flex;
+        justify-content: space-around;
+        padding: 50px 0;
+        background-color: #333;
+      }
+
+      .featured-bikes .bike-card {
+        text-align: center;
+      }
+
+      .featured-bikes .bike-card img {
+        width: 250px;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      .featured-bikes .bike-card a {
+        color: #ff8c00;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        background-color: #444;
+        padding: 40px;
+        text-align: center;
+      }
+
+      .testimonials .testimonial {
+        margin-bottom: 20px;
+      }
+     /* Services Section */
+.services-section {
+    background-color: #000000;
+    padding: 50px 20px;
+    text-align: center;
+    background-image: url("https://cdn.pixabay.com/photo/2016/04/07/06/53/bmw-1313343_1280.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    
+
+}
+
+.section-title {
+    font-size: 36px;
+    color: rgb(37, 34, 34);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    animation: fadeInText 1s ease-out forwards;
+}
+
+/* Services Container */
+.services-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+/* Service Card */
+.service-card {
+    background-color: rgb(255, 252, 252);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 280px;
+    height: 10%;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Service Image */
+.service-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #eee;
+   
+}
+
+/* Service Info */
+.service-info {
+    padding: 20px;
+}
+
+.service-info h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.service-info p {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.learn-more-btn {
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.learn-more-btn:hover {
+    background-color: #e76d00;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInText {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.top-mechanics-section {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;  /* Keep this relative for positioning child elements */
+    background-image: url("https://cdn.pixabay.com/photo/2017/09/27/18/47/scooter-2792992_1280.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 36px;
+    color: rgb(17, 15, 15);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* Carousel Container */
+.mechanic-carousel {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    gap: 30px;
+    position: relative; /* Ensure this is relative to position the buttons */
+}
+
+/* Mechanic Slide */
+.mechanic-slide {
+    display: inline-block;
+    width: 280px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.mechanic-slide.active {
+    opacity: 1;
+}
+
+.mechanic-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #eee;
+}
+
+.mechanic-info {
+    padding: 20px;
+}
+
+.mechanic-info h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.mechanic-info p {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.rating {
+    font-size: 18px;
+    color: #ff8c00;
+    margin-bottom: 20px;
+}
+
+.contact-btn {
+    background-color: #ff8c00;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: #e76d00;
+}
+
+/* Carousel Controls (Prev & Next Buttons) */
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.prev-btn, .next-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 24px;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;  /* Ensure the buttons are above the carousel content */
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background-color: #333;
+}
+
+/* Adjust button positions to the left and right */
+.prev-btn {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.next-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.faq-section {
+    background-color: #111;
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.faq-section h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+    color: #ff8c00;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #333;
+}
+
+.faq-question {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    color: #ff8c00;
+    font-size: 18px;
+    padding: 15px 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.faq-question:hover {
+    background-color: #1e1e1e;
+}
+
+.faq-answer {
+    display: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ccc;
+}
+
+
+
+      /* Footer */
+     /* Footer Section */
+.footer-section {
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 253, 253);
+    padding: 40px 20px;
+    text-align: center; 
+     background-image: url("https://cdn.pixabay.com/photo/2016/11/18/21/30/bike-1836962_1280.jpg");
+     background-size: cover;
+     background-repeat: no-repeat;
+ 
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.footer-column {
+    flex: 1;
+    max-width: 300px;
+    margin: 10px;
+    padding: 10px;
+    opacity: 0;
+    animation: slideIn 0.5s ease-out forwards; /* Slide-in animation */
+    animation-delay: 0.2s;
+}
+
+.footer-column h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ff8c00;
+    opacity: 0;
+    animation: fadeInText 0.5s ease-out forwards; 
+}
+
+.footer-column p, .footer-column ul {
+    font-size: 16px;
+    color: rgb(2, 2, 2);
+    opacity: 0;
+    animation: fadeInText 0.5s ease-out forwards; /* Fade-in effect for text */
+    animation-delay: 0.3s;
+}
+
+.footer-column ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: rgb(17, 15, 15);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+    color: #ff8c00;
+}
+.footer-bottom{
+  margin-top: 200px;
+  margin-bottom: 0px;
+  width: 200px;
+}
+
+.social-media ul 
+{
+    display: flex;
+    gap: 55px;
+}
+
+.social-media ul li a {
+    display: block;
+    transition: transform 0.3s ease, scale 0.3s ease;
+}
+
+.social-icon {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease, scale 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+.footer-bottom {
+    background-color: #111;
+    padding: 10px;
+    color: #ccc;
+    font-size: 14px;
+    opacity: 0;
+    animation: fadeInText 0.5s ease-out forwards;
+    animation-delay: 0.4s;
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInText {
+    to {
+        opacity: 1;
+    }
+}
+/* Container for the slideshow */
+.slideshow-container {
+    position: relative;
+    max-width: 170%;
+    margin: 0 auto;
+    overflow: hidden; /* Hide any content that overflows */
+    margin-top: 40px;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Image Styling */
+.slide-img {
+    width: 100%;
+    height: 500px;  /* Adjust the height according to your needs */
+    object-fit: cover;
+}
+
+/* Hide the images by default */
+.slide {
+    display: none;
+}
+
+/* Fade Effect */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+/* Keyframes for fade effect */
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.text-overlay {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    right: 40%;
+    transform: translate( -50%);
+    color: white;
+    text-align: left;
+    padding: 20px;
+  
+    
+    width: 80%; /* Adjust width to make the text container smaller or larger */
+   
+}
+
+.text-overlay h2 {
+    font-size: 66px;
+    margin-bottom: 10px;
+}
+
+.text-overlay p {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 800px;
+}
+/* Navigation buttons (previous and next) */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    font-size: 24px;
+    color: white;
+    padding: 16px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transform: translateY(-50%);
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+/* Hover effect for buttons */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.back-to-top-btn {
+  background-color: #ff8c00;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+/* Show button when scrolled down */
+.back-to-top-btn.show {
+  display: block;
+}
+
+.back-to-top-btn:hover {
+  background-color: #e06e00;
+}
+/* Painted Effect */
+.painted-effect {
+  position: relative;
+  font-size: 32px;
+  font-weight: bold;
+  color: white; /* Text color */
+  display: inline-block;
+}
+
+.painted-effect::before {
+  content: 'the most';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 35px; /* Thickness of the "paint" */
+  background: linear-gradient(90deg, rgba(233, 49, 49, 0.7), rgba(206, 206, 20, 0.7), rgba(189, 118, 5, 0.7)); /* Gradient for the "paint" */
+  transform: translateY(-50%) scaleX(0);
+  transform-origin: left center;
+  animation: paint-effect 0.005s ease forwards;
+}
+
+/* Animation for the painted effect */
+@keyframes paint-effect {
+  0% {
+    transform: translateY(-50%) scaleX(0);
+  }
+  100% {
+    transform: translateY(-50%) scaleX(1);
+  }
+}
+
+
+
+
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="logo">
+       tezMechanicX
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Bikes</a></li>
+          <li><a href="#">Service</a></li>
+          <li><a href="join.html">Join us</a></li>
+          <li><a href="login.html">Buy memebership</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>WELCOME TO MECHANICX</h1>
+        <p id="hero2">Find Nearby Mechanics When You Need <span class="painted-effect"> the most</span> </p>
+        <a href=" index2.html" class="cta-btn">GET HELP</a>
+      </div>
+    </section>
+    <section id="slideshow" class="slideshow-container">
+      <div class="slide fade">
+          <img src="https://cdn.pixabay.com/photo/2016/11/18/21/30/bike-1836962_1280.jpg" alt="Slide 1" class="slide-img">
+          <div class="text-overlay">
+            <h2>Our Vision</h2>
+            <p>To revolutionize the way people find bike mechanics, providing reliable, accessible, and quick solutions for every rider.
+              To become the most trusted and accessible platform for two-wheeler riders across the globe—ensuring that no biker is ever left stranded by connecting them instantly to reliable, nearby mechanics anytime, anywhere.
+            </p><br><br>
+
+            <p>
+              We envision a world where riders can hit the road with complete peace of mind, knowing that help is just a tap away. By combining technology with human reliability, we aim to redefine roadside assistance for the modern biker.
+            </p>
+        </div>
+      </div>
+
+
+      <div class="slide fade">
+          <img src="https://cdn.pixabay.com/photo/2017/02/18/18/43/motorcycle-2077914_1280.jpg" alt="Slide 2" class="slide-img">
+          <div class="text-overlay">
+            <h2>Our Mission</h2>
+            <p>To empower bikers worldwide by connecting them to trusted mechanics, ensuring no rider is left stranded.
+              To empower every rider with quick access to dependable mechanical help through innovative technology, a vast network of verified professionals, and a seamless user experience—bringing safety, convenience, and peace of mind to every journey.
+            </p><br><br>
+            <p>
+              We are committed to building a platform that not only solves problems but also builds a community—where riders feel supported, mechanics feel valued, and every roadside issue becomes an opportunity to connect and assist with trust and speed.
+            </p>
+        </div>
+      </div>
+      
+      <div class="slide fade">
+          <img src="https://cdn.pixabay.com/photo/2018/08/29/03/57/man-3639100_640.jpg" alt="Slide 3" class="slide-img">
+          <div class="text-overlay">
+            <h2>Our Values</h2>
+            <p>Trust, Quality, and Service - We are committed to providing top-notch service and building lasting relationships with our community.
+              Our Core Values
+🚀 Reliability
+We ensure that every mechanic in our network is trusted, skilled, and punctual—so our users can ride with confidence.<br><br><br>
+
+Transparency
+We believe in open communication, honest pricing, and clear feedback between mechanics and users.<br><br><br>
+
+Innovation
+We constantly evolve our platform to bring smarter, faster, and more effective solutions for roadside assistance.<br>
+
+
+ Empathy
+We care deeply about our community of riders and mechanics, striving to provide support when it’s needed most.<br>
+
+Accessibility
+We’re committed to making our services available to every rider, whether in cities or remote areas.<br>
+            </p>
+        </div>
+      </div>
+      <!-- Add more slides as needed -->
+  
+      <!-- Navigation Controls -->
+      <a class="prev" onclick="plusSlides(-1)">❮</a>
+      <a class="next" onclick="plusSlides(1)">❯</a>
+  </section>
+  
+
+  
+    <section id="services" class="services-section">
+      <h2 class="section-title">Our Services</h2>
+      <div class="services-container">
+          <div class="service-card">
+              <img src="https://static.vecteezy.com/system/resources/previews/027/197/561/non_2x/illustration-of-car-oil-change-icon-in-dark-color-and-white-background-vector.jpg" alt="Oil Change" class="service-img">
+              <div class="service-info">
+                  <h3>Oil Change</h3>
+                  <p>Regular oil changes ensure your bike runs smoothly and efficiently. We use high-quality oils for optimal performance.</p>
+                  <a href="#" class="learn-more-btn">Learn More</a>
+              </div>
+          </div>
+          <div class="service-card">
+              <img src="https://png.pngtree.com/png-vector/20190912/ourmid/pngtree-full-battery-icon-vectors-png-image_1728085.jpg" alt="Battery Charge" class="service-img">
+              <div class="service-info">
+                  <h3>Battery Charge</h3>
+                  <p>A healthy battery is crucial for your bike’s electrical system. We offer quick and reliable battery charging services.</p>
+                  <a href="#" class="learn-more-btn">Learn More</a>
+              </div>
+          </div>
+          <div class="service-card">
+              <img src="https://thumbs.dreamstime.com/b/car-maintenance-repair-icon-set-vector-71209772.jpg" alt="Breakdown Repair" class="service-img">
+              <div class="service-info">
+                  <h3>Breakdown Repair</h3>
+                  <p>Stuck on the road? Our mechanics are available 24/7 to assist with breakdowns and get you back on track.</p>
+                  <a href="#" class="learn-more-btn">Learn More</a>
+              </div>
+          </div>
+          <div class="service-card">
+              <img src="https://www.shutterstock.com/image-vector/car-wheel-changing-icon-vector-600nw-2162911001.jpg" alt="Tire Change" class="service-img">
+              <div class="service-info">
+                  <h3>Tire Change</h3>
+                  <p>We provide efficient tire change services to ensure your bike rides smoothly and safely on any terrain.</p>
+                  <a href="#" class="learn-more-btn">Learn More</a>
+              </div>
+          </div>
+         
+  </section>
+  
+
+<section id="faq" class="faq-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-container">
+      <div class="faq-item">
+          <button class="faq-question">How do I request a mechanic?</button>
+          <div class="faq-answer">
+              To request a mechanic, click on the <strong>GET HELP</strong> button, allow location access, and choose the type of service you need. The nearest available mechanic will be notified.
+          </div>
+      </div>
+      <div class="faq-item">
+          <button class="faq-question">Are your services available 24/7?</button>
+          <div class="faq-answer">
+              Yes, our platform offers 24/7 support in most urban locations. We ensure help reaches you even during late-night emergencies.
+          </div>
+      </div>
+      <div class="faq-item">
+
+      try {
+          <button class="faq-question">Can I track the mechanic in real-time?</button>
+          <div class="faq-answer">
+              Absolutely! Once a mechanic accepts your request, you can see their live location and estimated time of arrival on your dashboard.
+          </div>
+      </div>
+      <div class="faq-item">
+          <button class="faq-question">Do I need to pay in advance?</button>
+          <div class="faq-answer">
+              No advance payment is required. You only pay after the service is completed, using cash, UPI, or other digital payment methods.
+          </div>
+      </div>
+      <div class="faq-item">
+          <button class="faq-question">Is there a warranty for the repairs?</button>
+          <div class="faq-answer">
+              Yes, selected services like battery replacements, oil change, and major repairs come with a 7-day service warranty when performed by certified mechanics.
+          </div>
+      </div>
+  </div>
+</section>
+
+
+
+    <!-- Footer Section -->
+    <section class="footer-section">
+      <div class="footer-container">
+          <div class="footer-column">
+              <h3>MechanicX</h3>
+              <p>Your reliable bike assistance partner.</p>
+          </div>
+          <div class="footer-column">
+              <h3>Quick Links</h3>
+              <ul>
+                  <li><a href="#services">Services</a></li>
+                  <li><a href="#top-mechanics">Top Mechanics</a></li>
+                  <li><a href="#faq">FAQ</a></li>
+              </ul>
+          </div>
+          <div class="footer-column">
+              <h3>Contact Us</h3>
+              <ul>
+                  <li>Email: support@mechanicx.com</li>
+                  <li>Phone: +918102649882</li>
+                  <li>jamshedpur ,jharkhand</li>
+              </ul>
+          </div>
+          <div class="footer-column social-media">
+              <h3>Follow Us</h3>
+              <ul>
+                  <li><a href="#"><img src="https://img.freepik.com/free-psd/social-media-logo-design_23-2151296987.jpg?ga=GA1.1.290636485.1723274376&semt=ais_hybrid&w=740" alt="Facebook" class="social-icon"></a></li>
+                  <li><a href="#"><img src="https://img.freepik.com/free-vector/twitter-new-2023-x-logo-white-background-vector_1017-45422.jpg?ga=GA1.1.290636485.1723274376&semt=ais_hybrid&w=740" alt="Twitter" class="social-icon"></a></li>
+                  <li><a href="#"><img src="https://img.freepik.com/free-vector/instagram-vector-social-media-icon-7-june-2021-bangkok-thailand_53876-136728.jpg?ga=GA1.1.290636485.1723274376&semt=ais_hybrid&w=740" alt="Instagram" class="social-icon"></a></li>
+                  <li><a href="#"><img src="https://img.freepik.com/free-psd/social-media-logo-design_23-2151296991.jpg?ga=GA1.1.290636485.1723274376&semt=ais_hybrid&w=740" alt="LinkedIn" class="social-icon"></a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>&copy; 2025 MechanicX. All rights reserved.</p>
+          <footer>
+            <div class="footer-content">
+              
+              <button id="back-to-top" class="back-to-top-btn">Back to Top</button>
+            </div>
+          </footer>
+          
+      </div>
+  </section>
+
+
+  
+    <script>
+
+      
+      const faqQuestions = document.querySelectorAll(".faq-question");
+      faqQuestions.forEach(button => {
+          button.addEventListener("click", () => {
+              const answer = button.nextElementSibling;
+              const isOpen = answer.style.display === "block";
+              document.querySelectorAll(".faq-answer").forEach(a => a.style.display = "none");
+              answer.style.display = isOpen ? "none" : "block";
+          });
+      });
+      let currentIndex = 0;
+const slides = document.querySelectorAll('.mechanic-slide');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+}
+
+document.querySelector('.next-btn').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    showSlide(currentIndex);
+});
+
+document.querySelector('.prev-btn').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    showSlide(currentIndex);
+});
+
+// Initial display
+showSlide(currentIndex);
+
+let slideIndex = 0; // Initial slide index
+
+// Function to show the current slide
+function showSlides() {
+    let slides = document.getElementsByClassName("slide");
+
+    // Hide all slides by default
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // Move to the next slide
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1} // Reset to first slide when reaching the end
+
+    // Show the current slide
+    slides[slideIndex - 1].style.display = "block";
+}
+
+// Function for previous and next slide control
+function plusSlides(n) {
+    slideIndex += n;
+    if (slideIndex > slides.length) {slideIndex = 1}
+    if (slideIndex < 1) {slideIndex = slides.length}
+    showSlides();
+}
+
+// Auto-show slides every 5 seconds
+setInterval(showSlides, 5000);
+
+// Initially show the first slide
+showSlides();
+
+
+
+
+
+      
+  </script>
+  
+  </body>
+</html>
