@@ -1,225 +1,80 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TezMechanixs Quick Assistant</title>
+  <title>Send SMS</title>
   <style>
-    :root {
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-
-      --light-background: #f8fafc;
-      --light-text: #1e293b;
-      --light-card: #ffffff;
-      --light-border: #e2e8f0;
-
-      --dark-background: #0f172a;
-      --dark-text: #f1f5f9;
-      --dark-card: #1e293b;
-      --dark-border: #334155;
-    }
-
-    [data-theme='light'] {
-      --background: var(--light-background);
-      --text: var(--light-text);
-      --card: var(--light-card);
-      --border: var(--light-border);
-    }
-
-    [data-theme='dark'] {
-      --background: var(--dark-background);
-      --text: var(--dark-text);
-      --card: var(--dark-card);
-      --border: var(--dark-border);
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', system-ui, sans-serif;
     }
 
     body {
-      background-color: var(--background);
-      color: var(--text);
-      padding: 2rem 1rem;
-      transition: background 0.3s, color 0.3s;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000; /* Black background */
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    form {
+      background: #fff; /* White form */
+      color: #000;
       padding: 2rem;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    h2 {
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      text-align: center;
-    }
-
-    .chat-container {
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+      width: 320px;
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1rem;
     }
 
-    textarea {
-      width: 100%;
-      padding: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: transparent;
-      color: var(--text);
-      resize: vertical;
-      min-height: 120px;
+    h3 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
       font-size: 1rem;
+      background-color: #f9f9f9;
+      color: #000;
     }
 
-    textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+    input::placeholder, textarea::placeholder {
+      color: #666;
     }
 
     button {
-      align-self: flex-end;
-      background: var(--primary);
-      color: white;
+      background-color: #000;
+      color: #fff;
+      padding: 10px;
       border: none;
-      padding: 0.75rem 2rem;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 1rem;
+      transition: background-color 0.3s ease;
       cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
     }
 
     button:hover {
-      background: var(--primary-hover);
-    }
-
-    button:active {
-      transform: scale(0.98);
-    }
-
-    pre#response {
-      background: var(--background);
-      border: 1px dashed var(--border);
-      padding: 1.5rem;
-      border-radius: 8px;
-      white-space: pre-wrap;
-      min-height: 150px;
-      font-family: 'Courier New', monospace;
-      position: relative;
-    }
-
-    .loading::after {
-      content: "Thinking...";
-      font-style: italic;
-      animation: dots 1.5s steps(5, end) infinite;
-      color: var(--primary);
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
-    }
-
-    @keyframes dots {
-      0% { content: "Thinking" }
-      33% { content: "Thinking." }
-      66% { content: "Thinking.." }
-      100% { content: "Thinking..." }
-    }
-
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      padding: 0.4rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
+      background-color: #333;
     }
   </style>
 </head>
 <body>
-  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
 
-  <div class="container">
-    <h2>⚡ TezMechanixs Quick Assistant</h2>
+  <form id="smsForm" method="POST" action="/send-sms">
+    <h3>Send SMS</h3>
+    <input type="text" name="number" placeholder="Phone Number" required>
+    <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
+    <button type="submit">Send</button>
+  </form>
 
-    <div class="chat-container">
-      <textarea 
-        id="prompt" 
-        placeholder="Ask your service assistant anything..."
-      ></textarea>
-
-      <button onclick="sendPrompt()">Ask →</button>
-
-      <h3>Response:</h3>
-      <pre id="response"></pre>
-    </div>
-  </div>
-
-  <script>
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-    }
-
-    async function sendPrompt() {
-      const prompt = document.getElementById('prompt').value.trim();
-      const responseEl = document.getElementById('response');
-
-      if (!prompt) {
-        alert('Please enter a message.');
-        return;
-      }
-
-      responseEl.textContent = '';
-      responseEl.classList.add('loading');
-
-      try {
-        const res = await fetch('/ask', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({ prompt })
-        });
-
-        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
-
-        const data = await res.json();
-        responseEl.textContent = data.reply || 'No reply received.';
-      } catch (err) {
-        responseEl.textContent = `❌ Error: ${err.message}`;
-      } finally {
-        responseEl.classList.remove('loading');
-      }
-    }
-  </script>
 </body>
 </html>

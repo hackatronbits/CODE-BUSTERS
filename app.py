@@ -1,53 +1,41 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, render_template, jsonify
 import requests
-import json
 
 app = Flask(__name__)
 
-OPENROUTER_API_KEY = "api key should be here"
+# Replace with your actual Fast2SMS API key
+FAST2SMS_API_KEY = "LWNetXsDHcuQISTOdr8YblZRAEzF3KnfpJ6kgjaxBqo9mwvPMhR5XyqnQhPOYSbxWm4pTwef2d3jJUuv"
 
-@app.route('/ask', methods=['POST'])
-def ask_openrouter():
-    user_input = request.json.get('prompt', '')
-    
-    if not user_input:
-        return jsonify({"error": "No prompt provided"}), 400
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/send-sms", methods=["POST"])
+def send_sms():
+    number = request.form.get("number")
+    message = request.form.get("message")
+
+    url = "https://www.fast2sms.com/dev/bulkV2"  # Updated endpoint
 
     payload = {
-        "model": "deepseek/deepseek-r1:free",
-        "messages": [
-            {"role": "user", "content": user_input}
-        ]
+        'sender_id': 'FSTSMS',
+        'message': message,
+        'language': 'english',
+        'route': 'q',  # Use 'q' for transactional (instant delivery), 'p' for promotional
+        'numbers': number
     }
 
     headers = {
-        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "Content-Type": "application/json",
-        "HTTP-Referer": "http://localhost:5000",
-        "X-Title": "MyLocalTestApp"
+        'authorization': FAST2SMS_API_KEY,
+        'Content-Type': "application/x-www-form-urlencoded"
     }
 
-    try:
-        response = requests.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers=headers,
-            data=json.dumps(payload),
-            timeout=30  # Added timeout for safety
-        )
-        response.raise_for_status()  # Raise exception for HTTP errors
-        
-        reply = response.json()['choices'][0]['message']['content']
-        return jsonify({"reply": reply})
-        
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": f"API request failed: {str(e)}"}), 500
-    except KeyError:
-        return jsonify({"error": "Unexpected response format from API"}), 500
+    response = requests.post(url, data=payload, headers=headers)
 
-@app.route('/')
-def index():
-    # Specify encoding to handle UTF-8 characters
-    return open('index.html', encoding='utf-8').read()
+    if response.status_code == 200:
+        return "✅ SMS sent successfully!"
+    else:
+        return f"❌ Failed to send SMS.<br>Status code: {response.status_code}<br>Response: {response.text}"
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
