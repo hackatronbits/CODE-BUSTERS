@@ -1,0 +1,13 @@
+[
+    {
+      "name": "Ravi Kumar",
+      "email": "ravi@example.com",
+      "status": "Authorized"
+    },
+    {
+      "name": "Ankit Yadav",
+      "email": "ankit@example.com",
+      "status": "Pending"
+    }
+  ]
+  

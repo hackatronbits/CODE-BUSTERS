@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mechanic Job Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 2rem;
+    }
+
+    .card {
+      background: #222;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+    }
+
+    button {
+      margin-right: 10px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .accept { background-color: green; color: white; }
+    .reject { background-color: red; color: white; }
+  </style>
+</head>
+<body>
+  <h1>Mechanic Job Requests</h1>
+  <div id="requests"></div>
+
+
+   <script>
+  // Load all job requests from backend
+  fetch('http://localhost:3200/requests')
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById('requests');
+      data.forEach(req => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <strong>Name:</strong> ${req.name}<br>
+          <strong>Phone:</strong> ${req.phone}<br>
+          <strong>Bike Model:</strong> ${req.bike_model}<br>
+          <strong>Issue:</strong> ${req.issue}<br>
+          <strong>Location:</strong> ${req.latitude}, ${req.longitude}<br>
+          <strong>Status:</strong> ${req.status || 'Pending'}<br><br>
+          <button class="accept">Accept</button>
+          <button class="reject">Reject</button>
+        `;
+
+        const acceptBtn = card.querySelector('.accept');
+        const rejectBtn = card.querySelector('.reject');
+
+        // Handle Accept/Reject clicks
+        acceptBtn.addEventListener('click', () => updateStatus(req._id, 'Accepted', req, card));
+        rejectBtn.addEventListener('click', () => updateStatus(req._id, 'Rejected', req, card));
+
+        container.appendChild(card);
+      });
+    });
+
+  // Update request status (also send SMS if accepted)
+  function updateStatus(id, status, requestData, cardElement) {
+    fetch(`http://localhost:3200/request/${id}/status`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status })
+    })
+    .then(res => res.json())
+    .then(() => {
+      alert(`Request ${status}`);
+
+      if (status === 'Accepted') {
+        sendSmsToMechanic(requestData);
+      }
+
+      // Remove the card from the DOM upon rejection
+      if (status === 'Rejected' && cardElement) {
+        cardElement.remove();
+      }
+    })
+    .catch(err => {
+      alert('Error updating status');
+      console.error(err);
+    });
+  }
+
+  // Optional: Send SMS to mechanic when accepted
+  function sendSmsToMechanic(req) {
+    const message = `
+Request Accepted!
+Name: ${req.name}
+Phone: ${req.phone}
+Bike: ${req.bike_model}
+Issue: ${req.issue}
+Location: ${req.latitude}, ${req.longitude}
+    `;
+
+    fetch('http://localhost:3200/send-sms', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        number: '9279760584', // Mechanic's number
+        message: message.trim()
+      })
+    })
+    .then(res => res.text())
+    .then(() => console.log('request sent to mechanic'))
+    .catch(err => console.error('SMS failed', err));
+  }
+</script>
+
+  </script>
+</body>
+</html>

@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # Replace with your actual Fast2SMS API key
-FAST2SMS_API_KEY = "LWNetXsDHcuQISTOdr8YblZRAEzF3KnfpJ6kgjaxBqo9mwvPMhR5XyqnQhPOYSbxWm4pTwef2d3jJUuv"
+FAST2SMS_API_KEY = "s7QtqRdxreDLhKjHOlEvFion5IzcWCZ9Xfu6yN3kTY1pwUGBMmywxf0aSQhG8erU2KmJbg1YVvDztjlk"
 
 @app.route("/")
 def index():
@@ -21,7 +21,7 @@ def send_sms():
         'sender_id': 'FSTSMS',
         'message': message,
         'language': 'english',
-        'route': 'q',  # Use 'q' for transactional (instant delivery), 'p' for promotional
+        'route': 'q',  # 'q' for transactional, 'p' for promotional
         'numbers': number
     }
 
@@ -38,4 +38,4 @@ def send_sms():
         return f"❌ Failed to send SMS.<br>Status code: {response.status_code}<br>Response: {response.text}"
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=6100)

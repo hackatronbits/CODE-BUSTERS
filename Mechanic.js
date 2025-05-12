@@ -19,6 +19,16 @@ const mechanicSchema = new mongoose.Schema({
       type: [Number], // [longitude, latitude]
       required: true
     }
+  },
+  rating: {
+    type: Number,
+    default: 0,       // Start with 0 or null if you prefer
+    min: 0,
+    max: 5
+  },
+  ratingCount: {
+    type: Number,
+    default: 0        // To track how many users have rated
   }
 });
 

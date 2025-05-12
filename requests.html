@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Emergency Requests</title>
+  <style>
+    body {
+      background: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .card {
+      background: #222;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>All Emergency Requests</h1>
+  <div id="requestsContainer"></div>
+
+  <script>
+    fetch("http://localhost:3000/requests")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("requestsContainer");
+        data.forEach(req => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h3>${req.name} (${req.phone})</h3>
+            <p><strong>Bike:</strong> ${req.bike_model}</p>
+            <p><strong>Issue:</strong> ${req.issue}</p>
+            <p><strong>Location:</strong> ${req.latitude}, ${req.longitude}</p>
+            <p><small>Submitted on: ${new Date(req.createdAt).toLocaleString()}</small></p>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(() => {
+        document.getElementById("requestsContainer").innerText = "Failed to load requests.";
+      });
+  </script>
+</body>
+</html>

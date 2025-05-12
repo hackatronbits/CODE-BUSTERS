@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mechanic is on the way</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .overlay {
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Simple background animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .animate-bg {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Bike riding animation */
+    @keyframes ride {
+      0% { left: -200px; }
+      50% { left: 50%; transform: translateX(-50%); }
+      100% { left: 110%; }
+    }
+
+    .bike {
+      position: absolute;
+      bottom: 50px;
+      width: 150px;
+      animation: ride 8s linear infinite;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen overflow-hidden relative">
+  <!-- Background Transparent GIF with animation -->
+  <div class="absolute inset-0 z-0 animate-bg">
+    <img src="https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif" alt="Mechanic GIF background" class="w-full h-full object-cover opacity-60" />
+  </div>
+
+  <!-- Bike animation -->
+  <img src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png" alt="Bike" class="bike z-0 opacity-80" />
+
+  <!-- Overlay with content -->
+  <div class="absolute inset-0 overlay z-10 flex flex-col items-center justify-center text-white text-center px-4">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-pulse drop-shadow-lg">Mechanic is arriving shortly!</h1>
+    <p class="text-lg md:text-2xl mb-4 drop-shadow">Estimated arrival time:</p>
+
+    <div class="text-5xl font-mono mb-6 animate-bounce drop-shadow-xl" id="countdown">--:--</div>
+
+    <p class="text-sm md:text-base drop-shadow">Thank you for waiting. We’ll be with you soon!</p>
+  </div>
+
+  <script>
+    // Countdown timer script (set ETA in minutes)
+    const ETA_MINUTES = 15; // Change ETA here
+    const countdownElement = document.getElementById('countdown');
+
+    let targetTime = new Date().getTime() + ETA_MINUTES * 60 * 1000;
+
+    const updateCountdown = () => {
+      let now = new Date().getTime();
+      let distance = targetTime - now;
+
+      if (distance < 0) {
+        countdownElement.innerHTML = "15:00";
+        return;
+      }
+
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.innerHTML = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
