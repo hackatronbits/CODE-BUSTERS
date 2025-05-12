@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mechanic Login & Signup</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #000000;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    header {
+      font-size: 36px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #ffcc00;
+    }
+
+    .form-box {
+      background: #1e1e1e;
+      border-radius: 10px;
+      width: 380px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .form-box h2 {
+      margin-bottom: 25px;
+      font-size: 26px;
+      color: #ffcc00;
+    }
+
+    input {
+      width: 85%;
+      padding: 12px;
+      margin: 12px 0;
+      border: 2px solid #ff9900;
+      border-radius: 20px;
+      background: #333333;
+      color: #ffffff;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input::placeholder {
+      color: #ffcc80;
+    }
+
+    .btn {
+      width: 90%;
+      padding: 12px;
+      margin-top: 20px;
+      background: linear-gradient(to right, #ffb300, #ff6f00);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: linear-gradient(to right, #ffa000, #f4511e);
+    }
+
+    .links {
+      margin-top: 15px;
+      font-size: 13px;
+    }
+
+    .links a {
+      color: #ffcc00;
+      text-decoration: none;
+      margin: 0 8px;
+      cursor: pointer;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>Mechanic Portal</header>
+
+  <div class="form-box" id="signupBox">
+    <h2>Create Account</h2>
+    <form id="signupForm">
+      <input type="text" id="newUsername" placeholder="Username" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="newPassword" placeholder="Password" required />
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+      <button type="submit" class="btn">Sign up</button>
+      <div class="links">
+        <a id="showLogin">Already have an account? Login</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="form-box hidden" id="loginBox">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUsername" placeholder="Username" required />
+      <input type="password" id="loginPassword" placeholder="Password" required />
+      <button type="submit" class="btn">Login</button>
+      <div class="links">
+        <a id="showSignup">Don't have an account? Sign up</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Toggle forms
+    const loginBox = document.getElementById('loginBox');
+    const signupBox = document.getElementById('signupBox');
+    const showSignup = document.getElementById('showSignup');
+    const showLogin = document.getElementById('showLogin');
+
+    showSignup.addEventListener('click', () => {
+      loginBox.classList.add('hidden');
+      signupBox.classList.remove('hidden');
+    });
+
+    showLogin.addEventListener('click', () => {
+      signupBox.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+    });
+
+    // Handle signup form
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("newUsername").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("newPassword").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
+
+      if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      alert("Signup successful!\nUsername: " + username + "\nEmail: " + email);
+      document.getElementById("signupForm").reset();
+
+      // Switch to login form after signup
+      signupBox.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+    });
+
+    // Handle login form
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      alert("Login attempted!\nUsername: " + username);
+      document.getElementById("loginForm").reset();
+    });
+  </script>
+
+</body>
+</html>
